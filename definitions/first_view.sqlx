@@ -13,4 +13,4 @@ config {
 
 -- The rest of a SQLX file contains your SELECT statement used to create the table.
 
-SELECT 'a' as first_name, 'b' as last_name
+SELECT 'a' as first_name, 'b' as last_name, 10 as age
