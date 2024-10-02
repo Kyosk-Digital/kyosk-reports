@@ -1,5 +1,5 @@
 defaultProject: kyosk-prod
-defaultLocation: EU
+defaultLocation: europe-west4
 defaultDataset: dataform
 defaultAssertionDataset: dataform_assertions
 dataformCoreVersion: 3.0.0

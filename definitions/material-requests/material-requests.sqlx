@@ -1,0 +1,29 @@
+config {
+    type: "table",
+    schema: "dataform_reports",
+    name: "material_request"
+}
+
+WITH
+  material_request_cte_cte AS (
+  SELECT
+    *,
+    ROW_NUMBER()OVER(PARTITION BY id ORDER BY date_modified DESC) AS INDEX
+  FROM
+    `kyosk-prod.karuru_reports.material_request`
+  WHERE
+    DATE(date_created) >= DATE_SUB(current_date, INTERVAL 12 month)
+    AND material_request_type = 'PURCHASE'
+    AND workflow_state NOT IN ('REJECTED') )
+SELECT
+  DISTINCT mr.company_id,
+  mr.set_warehouse_id,
+  mr.target_warehouse_territory_id,
+  i.warehouse_id,
+  mr.id,
+  mr.name,
+  mr.workflow_state
+FROM
+  material_request_cte_cte mr, unnest(items) i
+WHERE
+  INDEX = 1
