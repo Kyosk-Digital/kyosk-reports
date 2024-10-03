@@ -1,0 +1,5 @@
+config {
+    type: "table",
+    name: "test"
+}
+select current_date() as created_at, 1 as id
