@@ -1,5 +1,0 @@
-config {
-    type: "table",
-    name: "test_1"
-}
-select 1 as one, 2 as two
